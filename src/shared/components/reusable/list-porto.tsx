@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { ExploreSection } from "@/shared/components/explore-section";
 import oneImage from "@/shared/assets/img/one.png";
 import twoImage from "@/shared/assets/img/two.png";
 import threeImage from "@/shared/assets/img/three.png";
@@ -101,37 +102,74 @@ export function ListPorto() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-12 md:py-24 px-4 md:px-20">
-      {portfolios.map((item, index) => (
-        <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm transition-shadow">
-          <div className="relative h-[300px] md:h-[300px] bg-gray-100">
-            <Image src={item.image} alt={item.title} fill className="object-cover" />
-          </div>
-          <div className="flex flex-col items-start self-stretch p-[14px] bg-[#FBFBFD]">
-            <h3 className="text-[#1A1A1A] text-lg font-bold leading-[28px] mb-3">{item.title}</h3>
-            <p className="text-[#6B6B6B] text-[14px] font-[400] leading-[20px]">{item.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4 mt-4">
-              {item.tags.map((tag, i) => (
-                <span key={i} className="text-xs md:text-sm">{tag}</span>
-              ))}
+    <div>
+      <ExploreSection 
+        badgeText="Start with Real Examples" 
+        title="Featured Case Studies" 
+        description="Explore selected case studies to see how real UX and product problems are approached, explored, and solved." 
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-12 md:py-24 px-4 md:px-20">
+        {portfolios.map((item, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-2xl overflow-hidden shadow-sm transition-shadow"
+          >
+            <div className="relative h-[300px] md:h-[300px] bg-gray-100">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover"
+              />
             </div>
-            <div className="flex items-center justify-between pt-4 border-t border-dashed border-[#E6E6E6] w-full">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                  <Image src={item.authorImage} alt={item.author} fill className="object-cover" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium">{item.author}</p>
-                  <p className="text-xs text-gray-500">{item.role}</p>
-                </div>
+
+            <div className="flex flex-col items-start self-stretch p-[14px] bg-[#FBFBFD]">
+              <h3 className="text-[#1A1A1A] text-lg font-bold leading-[28px] mb-3">
+                {item.title}
+              </h3>
+
+              <p className="text-[#6B6B6B] text-[14px] font-[400] leading-[20px]">
+                {item.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-4 mt-4">
+                {item.tags.map((tag) => (
+                  <span key={tag} className="text-xs md:text-sm">
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <span className={`text-xs px-3 py-1 rounded-full ${levelColors[item.level as keyof typeof levelColors]}`}>
-                {item.level}
-              </span>
+
+              <div className="flex items-center justify-between pt-4 border-t border-dashed border-[#E6E6E6] w-full">
+                <div className="flex items-center gap-3">
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                    <Image
+                      src={item.authorImage}
+                      alt={item.author}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium">{item.author}</p>
+                    <p className="text-xs text-gray-500">{item.role}</p>
+                  </div>
+                </div>
+
+                <span
+                  className={`text-xs px-3 py-1 rounded-full ${
+                    levelColors[item.level as keyof typeof levelColors]
+                  }`}
+                >
+                  {item.level}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+
+      </div>
     </div>
   )
 }

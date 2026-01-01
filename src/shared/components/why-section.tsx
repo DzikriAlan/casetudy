@@ -1,5 +1,6 @@
 "use client"
 
+import { ExploreSection } from "@/shared/components/explore-section";
 import Image from "next/image"
 import oneWhyImage from "@/shared/assets/img/one-why.png"
 import twoWhyImage from "@/shared/assets/img/two-why.png"
@@ -35,36 +36,43 @@ export function WhyCard() {
   ]
 
   return (
-    <section className="bg-[#FBFBFD]">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {whys.map((item, index) => (
-            <div
-              key={index}
-              className="relative overflow-hidden rounded-[28px] border border-[#C7C8CC] bg-[#FBFBFD] p-8"
-            >
-              <div className="flex h-full flex-col justify-between">
-                <div className="space-y-4">
-                  <h3 className="text-[26px] font-bold leading-[100%] text-[#151618]">
-                    {item.title}
-                  </h3>
-                  <p className="max-w-[360px] text-[14px] font-normal leading-[20px] text-[#424345]">
-                    {item.description}
-                  </p>
-                </div>
+    <div>
+      <ExploreSection 
+        badgeText="Designed for Learning" 
+        title="Why Casetudy" 
+        description="Casetudy helps you learn UX and product design through clear, real-world case studies you can actually follow." 
+      />
+      {/* <section className="bg-[#FBFBFD]">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {whys.map((item, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden rounded-[28px] border border-[#C7C8CC] bg-[#FBFBFD] p-8"
+              >
+                <div className="flex h-full flex-col justify-between">
+                  <div className="space-y-4">
+                    <h3 className="text-[26px] font-bold leading-[100%] text-[#151618]">
+                      {item.title}
+                    </h3>
+                    <p className="max-w-[360px] text-[14px] font-normal leading-[20px] text-[#424345]">
+                      {item.description}
+                    </p>
+                  </div>
 
-                <div className="relative mt-10 w-full">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    className="mx-auto w-full max-w-[420px]"
-                  />
+                  <div className="relative mt-10 w-full">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      className="mx-auto w-full max-w-[420px]"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section> */}
+    </div>
   )
 }
