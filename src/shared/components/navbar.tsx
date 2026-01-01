@@ -1,5 +1,5 @@
 "use client"
-
+import Image from "next/image"
 import { useState } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 
@@ -42,10 +42,13 @@ export function Navbar() {
             <div className="hidden lg:flex items-center space-x-4">
               <div className="relative group">
                 <button className="flex items-center space-x-2 text-gray-700 hover:text-orange-600 transition-colors text-sm font-medium">
-                  <img 
+                  <Image 
                     src="https://flagcdn.com/w40/gb.png" 
                     alt="EN" 
                     className="w-5 h-3.5 rounded shadow-sm"
+                    width={20}
+                    height={14}
+                    unoptimized
                   />
                   <span>EN</span>
                   <ChevronDown className="w-4 h-4" />
@@ -88,10 +91,13 @@ export function Navbar() {
                 <div className="border-t border-gray-100 my-2"></div>
                 <button className="w-full flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors">
                   <div className="flex items-center space-x-2">
-                    <img 
+                    <Image 
                       src="https://flagcdn.com/w40/gb.png" 
                       alt="EN" 
                       className="w-5 h-3.5 rounded shadow-sm"
+                      width={20}
+                      height={14}
+                      unoptimized
                     />
                     <span>EN</span>
                   </div>

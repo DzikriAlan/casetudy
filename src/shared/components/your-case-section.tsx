@@ -26,7 +26,7 @@ export function YourCaseSection() {
         </h2>
         
         <p className="mb-10 text-base text-white/90 md:text-lg lg:text-xl">
-          You don't need a perfect project to contribute. Share what you've worked on and help others
+          You don&apos;t need a perfect project to contribute. Share what you&apos;ve worked on and help others
           learn from real design processes, including your own.
         </p>
         

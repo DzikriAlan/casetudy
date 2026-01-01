@@ -1,39 +1,39 @@
 "use client"
 
 import { ExploreSection } from "@/shared/components/explore-section";
-import Image from "next/image"
-import oneWhyImage from "@/shared/assets/img/one-why.png"
-import twoWhyImage from "@/shared/assets/img/two-why.png"
-import threeWhyImage from "@/shared/assets/img/three-why.png"
-import fourWhyImage from "@/shared/assets/img/four-why.png"
+// import Image from "next/image"
+// import oneWhyImage from "@/shared/assets/img/one-why.png"
+// import twoWhyImage from "@/shared/assets/img/two-why.png"
+// import threeWhyImage from "@/shared/assets/img/three-why.png"
+// import fourWhyImage from "@/shared/assets/img/four-why.png"
 
 export function WhyCard() {
-  const whys = [
-    {
-      image: oneWhyImage,
-      title: "Learn from Real Work",
-      description:
-        "Every case study is based on real projects, so you learn how design decisions are made in real situations—not theory alone.",
-    },
-    {
-      image: twoWhyImage,
-      title: "Structured, Step-by-Step",
-      description:
-        "Each case study follows a clear structure, helping you understand the process without feeling overwhelmed.",
-    },
-    {
-      image: threeWhyImage,
-      title: "Focus on Decision-Making",
-      description:
-        "Casestudy highlights the reasoning behind design choices, not just the final visuals, so you can learn how to think like a designer.",
-    },
-    {
-      image: fourWhyImage,
-      title: "Easy to Explore",
-      description:
-        "You can quickly browse and open case studies to find topics and levels that match your current learning goals.",
-    },
-  ]
+  // const whys = [
+  //   {
+  //     image: oneWhyImage,
+  //     title: "Learn from Real Work",
+  //     description:
+  //       "Every case study is based on real projects, so you learn how design decisions are made in real situations—not theory alone.",
+  //   },
+  //   {
+  //     image: twoWhyImage,
+  //     title: "Structured, Step-by-Step",
+  //     description:
+  //       "Each case study follows a clear structure, helping you understand the process without feeling overwhelmed.",
+  //   },
+  //   {
+  //     image: threeWhyImage,
+  //     title: "Focus on Decision-Making",
+  //     description:
+  //       "Casestudy highlights the reasoning behind design choices, not just the final visuals, so you can learn how to think like a designer.",
+  //   },
+  //   {
+  //     image: fourWhyImage,
+  //     title: "Easy to Explore",
+  //     description:
+  //       "You can quickly browse and open case studies to find topics and levels that match your current learning goals.",
+  //   },
+  // ]
 
   return (
     <div>
