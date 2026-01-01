@@ -17,7 +17,7 @@ export function ExploreSection() {
             </div>
             {/* Right: Description */}
             <div className="mt-8 md:mt-0 w-full md:w-1/2 flex items-center justify-center md:justify-end">
-                <p className="max-w-lg text-lg md:text-2xl text-gray-600 text-center md:text-left pt-4">
+                <p className="max-w-lg text-lg md:text-xl text-gray-600 text-center md:text-left pt-4">
                     Explore selected case studies to see how real UX and product problems are approached, explored, and solved.
                 </p>
             </div>
