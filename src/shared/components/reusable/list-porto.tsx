@@ -1,5 +1,6 @@
 "use client"
 
+import { Icon } from '@iconify/react';
 import Image from "next/image"
 import { ExploreSection } from "@/shared/components/explore-section";
 import oneImg from "@/shared/assets/img/landing/porto/one.webp";
@@ -19,7 +20,7 @@ export function ListPorto() {
       tags: ["Onboarding", "User Research"],
       author: "John Dukes",
       role: "Product Designer",
-      level: "Intermediate",
+      level: { name: 'Intermediate', icon: 'bg-[#FE4F18]', background: 'bg-[#FFDCD1]', color: 'text-[#CF4418]' },
       image: oneImg,
       authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop"
     },
@@ -29,7 +30,7 @@ export function ListPorto() {
       tags: ["UX Flow", "Usability Testing"],
       author: "Eddie Lake",
       role: "UX Designer",
-      level: "Intermediate",
+      level: { name: 'Intermediate', icon: 'bg-[#FE4F18]', background: 'bg-[#FFDCD1]', color: 'text-[#CF4418]' },
       image: twoImg,
       authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop"
     },
@@ -39,7 +40,7 @@ export function ListPorto() {
       tags: ["Design System", "UI Design"],
       author: "Stephanie Sharkey",
       role: "UI Designer",
-      level: "Beginner",
+      level: { name: 'Beginner', icon: 'bg-[#F9BF25]', background: 'bg-[#FFF3CC]', color: 'text-[#916800]' },
       image: threeImg,
       authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop"
     },
@@ -49,7 +50,7 @@ export function ListPorto() {
       tags: ["First-Time UX", "Interaction Design"],
       author: "Jerry Helfer",
       role: "UX/UI Designer",
-      level: "Advanced",
+      level: { name: 'Advanced', icon: 'bg-[#22BE7B]', background: 'bg-[#DFF4E5]', color: 'text-[#1B734C]' },
       image: fourImg,
       authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop"
     },
@@ -59,7 +60,7 @@ export function ListPorto() {
       tags: ["User Flow", "UX Analysis"],
       author: "Rina Mahesa",
       role: "Product Designer",
-      level: "Beginner",
+      level: { name: 'Beginner', icon: 'bg-[#F9BF25]', background: 'bg-[#FFF3CC]', color: 'text-[#916800]' },
       image: fiveImg,
       authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop"
     },
@@ -69,7 +70,7 @@ export function ListPorto() {
       tags: ["Onboarding", "UX Writing"],
       author: "Dimas Putra",
       role: "UX Writing",
-      level: "Intermediate",
+      level: { name: 'Intermediate', icon: 'bg-[#FE4F18]', background: 'bg-[#FFDCD1]', color: 'text-[#CF4418]' },
       image: sixImg,
       authorImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop"
     },
@@ -79,7 +80,7 @@ export function ListPorto() {
       tags: ["UX Strategy", "Research"],
       author: "Sarah Wulandari",
       role: "UX Researcher",
-      level: "Beginner",
+      level: { name: 'Beginner', icon: 'bg-[#F9BF25]', background: 'bg-[#FFF3CC]', color: 'text-[#916800]' },
       image: sevenImg,
       authorImage: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&h=80&fit=crop"
     },
@@ -89,17 +90,11 @@ export function ListPorto() {
       tags: ["Mobile UX", "UI Design"],
       author: "Fajar Nugroho",
       role: "UI Designer",
-      level: "Advanced",
+      level: { name: 'Advanced', icon: 'bg-[#22BE7B]', background: 'bg-[#DFF4E5]', color: 'text-[#1B734C]' },
       image: eightImg,
       authorImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop"
     }
   ]
-
-  const levelColors = {
-    Beginner: "bg-yellow-100 text-yellow-700",
-    Intermediate: "bg-orange-100 text-orange-700",
-    Advanced: "bg-green-100 text-green-700"
-  }
 
   return (
     <div>
@@ -125,14 +120,12 @@ export function ListPorto() {
             </div>
 
             <div className="flex flex-col items-start self-stretch p-[14px] bg-[#FBFBFD]">
-              <h3 className="text-[#1A1A1A] text-lg font-bold leading-[28px] mb-3">
+              <h3 className="text-[#1A1A1A] text-lg font-bold leading-[28px] mb-3 line-clamp-2 min-h-[56px]">
                 {item.title}
               </h3>
-
               <p className="text-[#6B6B6B] text-[14px] font-[400] leading-[20px]">
                 {item.description}
               </p>
-
               <div className="flex flex-wrap gap-2 mb-4 mt-4">
                 {item.tags.map((tag) => (
                   <span key={tag} className="text-xs md:text-sm">
@@ -140,7 +133,6 @@ export function ListPorto() {
                   </span>
                 ))}
               </div>
-
               <div className="flex items-center justify-between pt-4 border-t border-dashed border-[#E6E6E6] w-full">
                 <div className="flex items-center gap-3">
                   <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
@@ -156,13 +148,13 @@ export function ListPorto() {
                     <p className="text-xs text-gray-500">{item.role}</p>
                   </div>
                 </div>
-
                 <span
-                  className={`text-xs px-3 py-1 rounded-full ${
-                    levelColors[item.level as keyof typeof levelColors]
-                  }`}
+                  className={`text-xs p-2 rounded-full flex items-center gap-2 ${item?.level?.background} ${item?.level?.color}`}
                 >
-                  {item.level}
+                  <span className={`flex items-center justify-center rounded-full h-[22px] w-[22px] ${item?.level?.icon}`}>
+                    <Icon icon="rivet-icons:lightning" width="10" height="10" className='text-white' />
+                  </span> 
+                  {item?.level?.name}
                 </span>
               </div>
             </div>
