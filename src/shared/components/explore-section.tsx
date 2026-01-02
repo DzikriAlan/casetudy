@@ -19,7 +19,7 @@ export function ExploreSection({
       </div>
 
       <div className="flex flex-col md:flex-row">
-        <div className="flex items-center justify-center md:w-[60%] mb-4 md:mb-0">
+        <div className="flex items-center justify-center md:justify-start md:w-[60%] mb-4 md:mb-0">
           <h2 className="text-4xl md:text-6xl font-bold text-black text-center md:text-left leading-tight md:leading-[1.1]">
             {title}
           </h2>

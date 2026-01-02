@@ -2,8 +2,8 @@
 import { HeroSection } from "@/shared/components/hero-section";
 import { ListPorto } from "@/shared/components/reusable/list-porto";
 import { YourCaseSection } from "@/shared/components/your-case-section";
-import { Footer } from "@/shared/components/footer";
-import { WhyCard } from "@/shared/components/why-section";
+import { FooterSection } from "@/shared/components/footer-section";
+import { WhySection } from "@/shared/components/why-section";
 export default function Page() {
 
   return (
@@ -11,8 +11,8 @@ export default function Page() {
       <HeroSection /> 
       <ListPorto />
       <YourCaseSection />
-      <WhyCard />
-      <Footer />
+      <WhySection />
+      <FooterSection />
     </div>
   );
 }

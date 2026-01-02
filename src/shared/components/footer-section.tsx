@@ -5,9 +5,9 @@ import dotImage from "@/shared/assets/img/decoration/dot.webp";
 import { StartCaseSection } from "./reusable/start-case-section";
 import { SocmedSection } from "./reusable/socmed-section";
 
-export function Footer() {
+export function FooterSection() {
   return (
-    <section className="relative bg-[#FE4F18] overflow-hidden m-3 rounded-2xl px-6 py-20 md:py-32 lg:py-40">
+    <section className="relative bg-[#FE4F18] overflow-hidden m-3 rounded-2xl px-6 py-20 md:py-32 lg:py-40 mt-10">
       <div className="absolute inset-0 opacity-10">
         <Image
           src={dotImage}

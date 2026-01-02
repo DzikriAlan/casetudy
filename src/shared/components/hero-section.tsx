@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import dotImage from "@/shared/assets/img/decoration/dot.webp";
-import { Navbar } from "@/shared/components/navbar";
+import { Navbar } from "@/shared/components/navbar-section";
 
 export function HeroSection() {
   return (
