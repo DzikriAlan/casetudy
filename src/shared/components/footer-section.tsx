@@ -17,7 +17,12 @@ export function FooterSection() {
           priority={false}
         />
       </div>
-      <StartCaseSection />
+      <StartCaseSection 
+        badgeText="From Learning to Sharing" 
+        title="Start Your Case Study"
+        description="Turn your work into a structured case study and document what you’ve learned along the way."
+        buttonText="Upload Case Study"
+      />
       <SocmedSection />
     </section>
   )

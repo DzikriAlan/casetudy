@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
-
 const config: Config = {
     darkMode: ["class"],
     content: [
@@ -11,8 +10,10 @@ const config: Config = {
   theme: {
   	extend: {
   		fontFamily: {
+  			satoshi: ['var(--font-satoshi)', 'sans-serif'],
   			poppins: ['var(--font-poppins)', 'sans-serif'],
   			playfair: ['var(--font-playfair)', 'serif'],
+  			sans: ['var(--font-satoshi)', 'system-ui', 'sans-serif'],
   		},
   		colors: {
   			midnight: {
