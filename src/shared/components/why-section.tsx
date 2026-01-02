@@ -2,10 +2,10 @@
 
 import { ExploreSection } from "@/shared/components/explore-section";
 // import Image from "next/image"
-// import oneWhyImage from "@/shared/assets/img/one-why.png"
-// import twoWhyImage from "@/shared/assets/img/two-why.png"
-// import threeWhyImage from "@/shared/assets/img/three-why.png"
-// import fourWhyImage from "@/shared/assets/img/four-why.png"
+// import oneWhyImage from "@/shared/assets/img/landing/why/one-why.webp"
+// import twoWhyImage from "@/shared/assets/img/landing/why/two-why.webp"
+// import threeWhyImage from "@/shared/assets/img/landing/why/three-why.webp"
+// import fourWhyImage from "@/shared/assets/img/landing/why/four-why.webp"
 
 export function WhyCard() {
   // const whys = [

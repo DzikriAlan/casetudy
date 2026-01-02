@@ -2,14 +2,14 @@
 
 import Image from "next/image"
 import { ExploreSection } from "@/shared/components/explore-section";
-import oneImage from "@/shared/assets/img/one.png";
-import twoImage from "@/shared/assets/img/two.png";
-import threeImage from "@/shared/assets/img/three.png";
-import fourImage from "@/shared/assets/img/four.png";
-import fiveImage from "@/shared/assets/img/five.png";
-import sixImage from "@/shared/assets/img/six.png";
-import sevenImage from "@/shared/assets/img/seven.png";
-import eightImage from "@/shared/assets/img/eight.png";
+import oneImg from "@/shared/assets/img/landing/porto/one.webp";
+import twoImg from "@/shared/assets/img/landing/porto/two.webp";
+import threeImg from "@/shared/assets/img/landing/porto/three.webp";
+import fourImg from "@/shared/assets/img/landing/porto/four.webp";
+import fiveImg from "@/shared/assets/img/landing/porto/five.webp";
+import sixImg from "@/shared/assets/img/landing/porto/six.webp";
+import sevenImg from "@/shared/assets/img/landing/porto/seven.webp";
+import eightImg from "@/shared/assets/img/landing/porto/eight.webp";
 
 export function ListPorto() {
   const portfolios = [
@@ -20,7 +20,7 @@ export function ListPorto() {
       author: "John Dukes",
       role: "Product Designer",
       level: "Intermediate",
-      image: oneImage,
+      image: oneImg,
       authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop"
     },
     {
@@ -30,7 +30,7 @@ export function ListPorto() {
       author: "Eddie Lake",
       role: "UX Designer",
       level: "Intermediate",
-      image: twoImage,
+      image: twoImg,
       authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop"
     },
     {
@@ -40,7 +40,7 @@ export function ListPorto() {
       author: "Stephanie Sharkey",
       role: "UI Designer",
       level: "Beginner",
-      image: threeImage,
+      image: threeImg,
       authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop"
     },
     {
@@ -50,7 +50,7 @@ export function ListPorto() {
       author: "Jerry Helfer",
       role: "UX/UI Designer",
       level: "Advanced",
-      image: fourImage,
+      image: fourImg,
       authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop"
     },
     {
@@ -60,7 +60,7 @@ export function ListPorto() {
       author: "Rina Mahesa",
       role: "Product Designer",
       level: "Beginner",
-      image: fiveImage,
+      image: fiveImg,
       authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop"
     },
     {
@@ -70,7 +70,7 @@ export function ListPorto() {
       author: "Dimas Putra",
       role: "UX Writing",
       level: "Intermediate",
-      image: sixImage,
+      image: sixImg,
       authorImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop"
     },
     {
@@ -80,7 +80,7 @@ export function ListPorto() {
       author: "Sarah Wulandari",
       role: "UX Researcher",
       level: "Beginner",
-      image: sevenImage,
+      image: sevenImg,
       authorImage: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=80&h=80&fit=crop"
     },
     {
@@ -90,7 +90,7 @@ export function ListPorto() {
       author: "Fajar Nugroho",
       role: "UI Designer",
       level: "Advanced",
-      image: eightImage,
+      image: eightImg,
       authorImage: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=80&h=80&fit=crop"
     }
   ]

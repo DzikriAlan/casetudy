@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import dotImage from "@/shared/assets/img/dot.png";
+import dotImage from "@/shared/assets/img/decoration/dot.webp";
 import { StartCaseSection } from "./reusable/start-case-section";
 import { SocmedSection } from "./reusable/socmed-section";
 

@@ -1,9 +1,10 @@
 "use client"
 import Image from "next/image"
-import linkedinSvg from '@/shared/assets/img/linkedin.svg'
-import xSvg from '@/shared/assets/img/x.svg'
-import instagramSvg from '@/shared/assets/img/instagram.svg'
-import threadsSvg from '@/shared/assets/img/threads.svg'
+import xImg from '@/shared/assets/img/landing/socmed/x.webp'
+import linkedinImg from "@/shared/assets/img/landing/socmed/linkedin.webp"
+import instagramImg from '@/shared/assets/img/landing/socmed/instagram.webp'
+import threadsImg from '@/shared/assets/img/landing/socmed/threads.webp'
+import logoCasetudyWhite from "@/shared/assets/img/logo/logo-casetudy-white.webp"
 
 export function SocmedSection() {
   return (
@@ -11,15 +12,10 @@ export function SocmedSection() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:w-[70%]">
                 <div className="flex items-center gap-2 mb-6">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                        <div className="w-5 h-5 grid grid-cols-2 gap-0.5">
-                            <div className="bg-[#FE4F18] rounded-tl"></div>
-                            <div className="bg-[#FE4F18] rounded-tr"></div>
-                            <div className="bg-[#FE4F18] rounded-bl"></div>
-                            <div className="bg-[#FE4F18] rounded-br"></div>
-                        </div>
-                    </div>
-                    <span className="text-white text-3xl font-light">Casetudy</span>
+                    <Image 
+                    src={logoCasetudyWhite} 
+                    alt=""
+                    />
                 </div>
                 
                 <p className="text-white text-base mb-8 max-w-md">Casetudy is a learning platform for UX/UI & Product Design through real-world case studies.</p>
@@ -53,7 +49,7 @@ export function SocmedSection() {
                                     <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" strokeWidth="1"/>
                                 </svg>
                             </div>
-                            <Image src={linkedinSvg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
+                            <Image src={linkedinImg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
                         </button>
                         <button className="w-10 h-10 rounded-full relative flex items-center justify-center hover:bg-white/10 transition-colors overflow-hidden">
                             <div className="absolute inset-0 opacity-70">
@@ -61,7 +57,7 @@ export function SocmedSection() {
                                     <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" strokeWidth="1"/>
                                 </svg>
                             </div>
-                            <Image src={xSvg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
+                            <Image src={xImg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
                         </button>
                         <button className="w-10 h-10 rounded-full relative flex items-center justify-center hover:bg-white/10 transition-colors overflow-hidden">
                             <div className="absolute inset-0 opacity-70">
@@ -69,7 +65,7 @@ export function SocmedSection() {
                                     <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" strokeWidth="1"/>
                                 </svg>
                             </div>
-                            <Image src={instagramSvg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
+                            <Image src={instagramImg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
                         </button>
                         <button className="w-10 h-10 rounded-full relative flex items-center justify-center hover:bg-white/10 transition-colors overflow-hidden">
                             <div className="absolute inset-0 opacity-70">
@@ -77,7 +73,7 @@ export function SocmedSection() {
                                     <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" strokeWidth="1"/>
                                 </svg>
                             </div>
-                            <Image src={threadsSvg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
+                            <Image src={threadsImg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
                         </button>
                     </div>
                 </div>

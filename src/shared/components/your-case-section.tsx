@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import dotImage from "@/shared/assets/img/dot.png";
+import dotImage from "@/shared/assets/img/decoration/dot.webp";
 
 export function YourCaseSection() {
   return (

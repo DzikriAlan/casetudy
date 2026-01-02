@@ -2,9 +2,18 @@
 import Image from "next/image"
 import { useState } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
+import logoCasetudy from "@/shared/assets/img/logo/logo-casetudy.webp";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMobileMenuOpen(prev => !prev)
+  }
+
+  const closeMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
 
   return (
     <div className="px-4 pt-4">
@@ -13,15 +22,10 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <a href="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-md">
-                  <div className="grid grid-cols-2 gap-0.5 w-4 h-4">
-                    <div className="bg-white rounded-sm"></div>
-                    <div className="bg-white rounded-sm"></div>
-                    <div className="bg-white rounded-sm"></div>
-                    <div className="bg-white rounded-sm"></div>
-                  </div>
-                </div>
-                <span className="text-2xl font-bold text-gray-900">Casetudy</span>
+                <Image 
+                  src={logoCasetudy} 
+                  alt=""
+                />
               </a>
             </div>
             <div className="hidden lg:flex items-center space-x-8">
@@ -61,7 +65,9 @@ export function Navbar() {
             </div>
             <button
               className="lg:hidden text-gray-700 p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={toggleMenu}
+              type="button"
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -77,19 +83,22 @@ export function Navbar() {
                 <a 
                   href="#case-studies" 
                   className="block px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Case Studies
                 </a>
                 <a 
                   href="#why" 
                   className="block px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Why
                 </a>
                 <div className="border-t border-gray-100 my-2"></div>
-                <button className="w-full flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors">
+                <button 
+                  type="button"
+                  className="w-full flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors"
+                >
                   <div className="flex items-center space-x-2">
                     <Image 
                       src="https://flagcdn.com/w40/gb.png" 
@@ -105,8 +114,9 @@ export function Navbar() {
                 </button>
 
                 <button 
+                  type="button"
                   className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-4 py-2.5 rounded-lg font-medium transition-all shadow-md mt-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   Upload
                 </button>

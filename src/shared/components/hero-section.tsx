@@ -1,9 +1,19 @@
 "use client"
-
+import Image from "next/image";
+import dotImage from "@/shared/assets/img/decoration/dot.webp";
 import { Navbar } from "@/shared/components/navbar";
+
 export function HeroSection() {
   return (
     <section className="relative bg-[#FE4F18] overflow-hidden m-3 rounded-2xl">
+      <div className="absolute inset-0 opacity-10">
+        <Image
+          src={dotImage}
+          alt=""
+          fill
+          className="object-cover"
+        />
+      </div>
       <Navbar /> 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-40 pb-20 md:pb-32">
         <div className="flex justify-center mb-8 md:mb-12">
