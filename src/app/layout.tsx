@@ -1,28 +1,7 @@
 import { ReactNode } from 'react';
-import { Poppins, Playfair_Display, Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-  display: 'swap',
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "900"],
-  variable: "--font-playfair",
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: 'swap',
-});
 
 const satoshi = localFont({
   src: [
@@ -70,8 +49,8 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${satoshi.variable} ${poppins.variable} ${playfair.variable} ${inter.variable} font-satoshi antialiased`}>
+    <html lang="en" suppressHydrationWarning className={satoshi.variable}>
+      <body className={`${satoshi.className} antialiased`}>
         <div className="min-h-screen">
           {children}
         </div>
