@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import "./globals.css";
+import { LanguageProvider } from "@/shared/lib/i18n/LanguageContext";
 
 const satoshi = localFont({
   src: [
@@ -52,7 +53,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning className={satoshi.variable}>
       <body className={`${satoshi.className} antialiased`}>
         <div className="min-h-screen">
-          {children}
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
         </div>
       </body>
     </html>

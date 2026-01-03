@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image";
 import dotImage from "@/shared/assets/img/decoration/dot.webp";
-import { Navbar } from "@/shared/components/navbar-section";
 
 export function HeroSection() {
   return (
@@ -14,7 +13,6 @@ export function HeroSection() {
           className="object-cover"
         />
       </div>
-      <Navbar /> 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-40 pb-20 md:pb-32">
         <div className="flex justify-center mb-8 md:mb-12">
           <div className="bg-white text-orange-600 px-6 py-2 rounded-full text-sm font-medium shadow-lg">
