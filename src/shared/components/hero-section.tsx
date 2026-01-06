@@ -1,8 +1,10 @@
 "use client"
 import Image from "next/image";
 import dotImage from "@/shared/assets/img/decoration/dot.webp";
+import { useLanguage } from "@/shared/lib/i18n/LanguageContext"
 
 export function HeroSection() {
+  const { t } = useLanguage()
   return (
     <section className="relative bg-[#FE4F18] overflow-hidden m-3 rounded-2xl">
       <div className="absolute inset-0 opacity-10">
@@ -16,26 +18,25 @@ export function HeroSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-40 pb-20 md:pb-32">
         <div className="flex justify-center mb-8 md:mb-12">
           <div className="bg-white text-orange-600 px-6 py-2 rounded-full text-sm font-medium shadow-lg">
-            Learn from Real Case Studies
+            {t("learnFromRealCaseStudies")}
           </div>
         </div>
         <div className="text-center mb-8 md:mb-12">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight">
-            Understand UX Through
+            {t("understandUXThrough")}
             <br />
-            Real-World Practice
+            {t("realWorldPractice")}
           </h1>
           <p className="text-white text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed px-4">
-            Explore structured UX/UI and Product Design case studies to learn how problems
-            are solved, decisions are made, and products are built clearly and step by step.
+            {t("heroDescription")}
           </p>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 md:mb-24">
           <button className="w-full sm:w-auto bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-all shadow-lg text-base md:text-lg">
-            Explore Case Studies
+            {t("exploreCaseStudies")}
           </button>
           <button className="w-full sm:w-auto bg-transparent text-white border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all text-base md:text-lg">
-            Upload Case Study
+            {t("uploadCaseStudy")}
           </button>
         </div>
         <div className="relative">
