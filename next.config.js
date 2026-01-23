@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  unoptimized: process.env.PREVIEW_ON_RENDER === 'true',
   images: {
+    unoptimized: process.env.PREVIEW_ON_RENDER === 'true',
     remotePatterns: [
       {
         protocol: 'https',
