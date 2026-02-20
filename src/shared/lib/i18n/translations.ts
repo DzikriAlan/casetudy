@@ -1,0 +1,57 @@
+export const translations = {
+  en: {
+    caseStudies: "Case Studies",
+    whyUs: "Why Us",
+    upload: "Upload",
+    learnFromRealCaseStudies: "Learn from Real Case Studies",
+    understandUXThrough: "Understand UX Through",
+    realWorldPractice: "Real-World Practice",
+    heroDescription: "Explore structured UX/UI and Product Design case studies to learn how problems are solved, decisions are made, and products are built clearly and step by step.",
+    exploreCaseStudies: "Explore Case Studies",
+    uploadCaseStudy: "Upload Case Study",
+    listPortoBadgeText: "Start with Real Examples",
+    listPortoTitle: "Featured Case Studies",
+    listPortoDescription: "Explore selected case studies to see how real UX and product problems are approached, explored, and solved.",
+    yourCaseBadgeText: "Share Your Learning",
+    yourCaseTitle: "Your Case Study Matters",
+    yourCaseDescription: "You don't need a perfect project to contribute. Share what you've worked on and help others learn from real design processes, including your own.",
+    whyBadgeText: "Designed for Learning",
+    whyTitle: "Why Casetudy",
+    whyDescription: "Casetudy helps you learn UX and product design through clear, real-world case studies you can actually follow.",
+    footerBadgeText: "From Learning to Sharing",
+    footerTitle: "Start Your Case Study",
+    footerDescription: "Turn your work into a structured case study and document what you've learned along the way.",
+    footerTagline: "Casetudy is a learning platform for UX/UI & Product Design through real-world case studies.",
+    footerCopyright: "© 2025 Casetudy. All rights reserved.",
+    aboutCasetudy: "About Casetudy"
+  },
+  id: {
+    caseStudies: "Studi Kasus",
+    whyUs: "Mengapa Kami",
+    upload: "Unggah",
+    learnFromRealCaseStudies: "Belajar dari Studi Kasus Nyata",
+    understandUXThrough: "Memahami UX Melalui",
+    realWorldPractice: "Praktik Dunia Nyata",
+    heroDescription: "Jelajahi studi kasus UX/UI dan Desain Produk terstruktur untuk mempelajari bagaimana masalah diselesaikan, keputusan dibuat, dan produk dibangun dengan jelas dan langkah demi langkah.",
+    exploreCaseStudies: "Jelajahi Studi Kasus",
+    uploadCaseStudy: "Unggah Studi Kasus",
+    listPortoBadgeText: "Mulai dengan Contoh Nyata",
+    listPortoTitle: "Studi Kasus Unggulan",
+    listPortoDescription: "Jelajahi studi kasus terpilih untuk melihat bagaimana masalah UX dan produk nyata didekati, dijelajahi, dan diselesaikan.",
+    yourCaseBadgeText: "Bagikan Pembelajaran Anda",
+    yourCaseTitle: "Studi Kasus Anda Berharga",
+    yourCaseDescription: "Anda tidak perlu proyek yang sempurna untuk berkontribusi. Bagikan apa yang telah Anda kerjakan dan bantu orang lain belajar dari proses desain nyata, termasuk milik Anda.",
+    whyBadgeText: "Dirancang untuk Pembelajaran",
+    whyTitle: "Mengapa Casetudy",
+    whyDescription: "Casetudy membantu Anda belajar UX dan desain produk melalui studi kasus dunia nyata yang jelas dan dapat Anda ikuti.",
+    footerBadgeText: "Dari Belajar ke Berbagi",
+    footerTitle: "Mulai Studi Kasus Anda",
+    footerDescription: "Ubah pekerjaan Anda menjadi studi kasus terstruktur dan dokumentasikan apa yang telah Anda pelajari sepanjang jalan.",
+    footerTagline: "Casetudy adalah platform pembelajaran untuk UX/UI & Desain Produk melalui studi kasus dunia nyata.",
+    footerCopyright: "© 2025 Casetudy. Hak cipta dilindungi.",
+    aboutCasetudy: "Tentang Casetudy"
+  }
+} as const;
+
+export type Language = keyof typeof translations;
+export type TranslationKey = keyof typeof translations.en;
