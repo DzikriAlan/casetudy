@@ -49,11 +49,11 @@ export function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node
-      
+
       if (langMenuRef.current && !langMenuRef.current.contains(target)) {
         setIsLangMenuOpen(false)
       }
-      
+
       if (isMobileMenuOpen && navRef.current && mobileMenuRef.current) {
         if (!navRef.current.contains(target) && !mobileMenuRef.current.contains(target)) {
           closeMenu()
@@ -71,26 +71,26 @@ export function Navbar() {
   }, [isMobileMenuOpen, isLangMenuOpen])
 
   return (
-    <nav className="rounded-xl shadow-xl mx-4 relative" ref={navRef}>
+    <nav className="rounded-xl border border-[#F4F5F9] bg-white mx-4 relative" ref={navRef}>
       <div className="flex bg-white rounded-xl items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center">
           <a href="/" className="flex items-center space-x-2">
-            <Image 
-              src={logoCasetudy} 
+            <Image
+              src={logoCasetudy}
               alt="Case Study Logo"
             />
           </a>
         </div>
         <div className="hidden lg:flex items-center space-x-8">
-          <a 
-            href="#case-studies" 
+          <a
+            href="#case-studies"
             className="text-gray-700 hover:text-orange-600 transition-colors text-sm font-medium"
           >
             {t("caseStudies")}
           </a>
-          
-          <a 
-            href="#why" 
+
+          <a
+            href="#why"
             className="text-gray-700 hover:text-orange-600 transition-colors text-sm font-medium"
           >
             {t("whyUs")}
@@ -98,12 +98,12 @@ export function Navbar() {
         </div>
         <div className="hidden lg:flex items-center space-x-4">
           <div className="relative" ref={langMenuRef}>
-            <button 
+            <button
               onClick={toggleLangMenu}
               className="flex items-center space-x-2 text-gray-700 hover:text-orange-600 transition-colors text-sm font-medium"
               type="button"
             >
-              <Image 
+              <Image
                 src={currentLang.flag}
                 alt={currentLang.name}
                 className="w-5 h-3.5 rounded shadow-sm"
@@ -123,7 +123,7 @@ export function Navbar() {
                     className="w-full flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors"
                     type="button"
                   >
-                    <Image 
+                    <Image
                       src={lang.flag}
                       alt={lang.name}
                       className="w-5 h-3.5 rounded shadow-sm"
@@ -138,7 +138,7 @@ export function Navbar() {
             )}
           </div>
 
-          <button 
+          <button
             className="bg-[#FE4F18] text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
             type="button"
           >
@@ -162,15 +162,15 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div ref={mobileMenuRef} className="mt-4 bg-white rounded-xl lg:hidden p-4 border-t border-gray-100 absolute left-0 right-0 z-40 shadow-xl">
           <div className="space-y-1 py-2">
-            <a 
-              href="#case-studies" 
+            <a
+              href="#case-studies"
               className="block px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors"
               onClick={closeMenu}
             >
               {t("caseStudies")}
             </a>
-            <a 
-              href="#why" 
+            <a
+              href="#why"
               className="block px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors"
               onClick={closeMenu}
             >
@@ -179,13 +179,13 @@ export function Navbar() {
             <div className="border-t border-gray-100 my-2"></div>
             <div className="flex flex-col gap-4">
               <div>
-                <button 
+                <button
                   type="button"
                   onClick={toggleMobileLangMenu}
                   className="w-full flex items-center justify-between px-4 py-2.5 text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg text-sm font-medium transition-colors"
                 >
                   <div className="flex items-center space-x-2">
-                    <Image 
+                    <Image
                       src={currentLang.flag}
                       alt={currentLang.name}
                       className="w-5 h-3.5 rounded shadow-sm"
@@ -206,7 +206,7 @@ export function Navbar() {
                         className="w-full flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 transition-colors rounded"
                         type="button"
                       >
-                        <Image 
+                        <Image
                           src={lang.flag}
                           alt={lang.name}
                           className="w-5 h-3.5 rounded shadow-sm"
@@ -220,7 +220,7 @@ export function Navbar() {
                   </div>
                 )}
               </div>
-              <button 
+              <button
                 type="button"
                 className="w-full bg-[#FE4F18] hover:bg-orange-600 text-white px-4 py-2.5 rounded-lg font-medium transition-all shadow-md"
                 onClick={closeMenu}
