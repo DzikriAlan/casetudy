@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CaseStudies, PayloadCaseStudies } from "@/features/case-studies/types/caseStudiesTypes";
+import { CaseStudiesState, PayloadCaseStudies } from "@/features/case-studies/types/caseStudiesTypes";
 
 export const useCaseStudiesStates = () => {
     const [payloadCaseStudies, setPayloadCaseStudies] = useState<PayloadCaseStudies>({
@@ -8,22 +8,16 @@ export const useCaseStudiesStates = () => {
         sort: "title:asc",
     });
 
-    const [caseStudies, setCaseStudiesState] = useState<CaseStudies>({
-        isLoading: false,
-        isError: false,
+    const [caseStudies, setCaseStudies] = useState<CaseStudiesState>({
         data: [],
-        pagination: {
-            page: 1,
-            pageSize: 10,
-            pageCount: 1,
-            total: 1,
-        },
+        isLoading: true,
+        isError: false,
     });
 
     return {
         payloadCaseStudies,
         setPayloadCaseStudies,
         caseStudies,
-        setCaseStudiesState,
+        setCaseStudies,
     };
 };

@@ -13,8 +13,7 @@ export default function Page() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Implementasi pattern arsitektur baru dari Vue dipetakan ke React hook
-  const { caseStudiesData, isLoading, isError } = useCaseStudiesHooks();
+  const { caseStudies } = useCaseStudiesHooks();
 
   useEffect(() => {
 
@@ -39,7 +38,12 @@ export default function Page() {
       </div>
 
       <HeroSection />
-      <ListPorto showViewAllButton={true} data={caseStudiesData} isLoading={isLoading} isError={isError} />
+      <ListPorto
+        showViewAllButton={true}
+        data={caseStudies.data}
+        isLoading={caseStudies.isLoading}
+        isError={caseStudies.isError}
+      />
       <YourCaseSection />
       <WhySection />
       <FooterSection />

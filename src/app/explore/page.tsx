@@ -10,7 +10,7 @@ import { useCaseStudiesHooks } from "@/features/case-studies/hooks/caseStudiesHo
 export default function ExplorePage() {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-    const { caseStudiesData, isLoading, isError } = useCaseStudiesHooks();
+    const { caseStudies } = useCaseStudiesHooks();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -94,7 +94,14 @@ export default function ExplorePage() {
             </main>
 
             <div className="w-full">
-                <ListPorto hideExploreSection={true} showEndOfList={true} showViewAllButton={false} data={caseStudiesData} isLoading={isLoading} isError={isError} />
+                <ListPorto
+                    hideExploreSection={true}
+                    showEndOfList={true}
+                    showViewAllButton={false}
+                    data={caseStudies.data}
+                    isLoading={caseStudies.isLoading}
+                    isError={caseStudies.isError}
+                />
             </div>
 
             <FooterSection />

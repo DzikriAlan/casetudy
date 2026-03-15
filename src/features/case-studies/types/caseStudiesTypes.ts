@@ -1,21 +1,7 @@
-// payload
 export interface PayloadCaseStudies {
     page: number;
     max: number;
     sort: string;
-}
-
-// state data yang dikonsumsi
-export interface DataCaseStudies {
-    id: number;
-    documentId: string;
-    title: string;
-    description: string;
-    external_link?: string;
-    approved?: boolean;
-    publishedAt?: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key: string]: any;
 }
 
 export interface CaseStudiesPagination {
@@ -25,10 +11,15 @@ export interface CaseStudiesPagination {
     total: number;
 }
 
-// state data
 export interface CaseStudies {
     isLoading: boolean;
     isError: boolean;
-    data: DataCaseStudies[];
+    data: [];
     pagination: CaseStudiesPagination;
 }
+
+export type CaseStudiesState<T = unknown> = {
+    data: T[];
+    isLoading: boolean;
+    isError: boolean;
+};

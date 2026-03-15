@@ -1,33 +1,26 @@
-import { PayloadCaseStudies } from "@/features/case-studies/types/caseStudiesTypes";
+import React from "react";
+import { CaseStudiesState, PayloadCaseStudies } from "@/features/case-studies/types/caseStudiesTypes";
 import { getCaseStudies } from "@/features/case-studies/service/caseStudiesService";
-import { useCaseStudiesStates } from "@/features/case-studies/states/caseStudiesStates";
-import { setCaseStudiesMapper } from "@/features/case-studies/helpers/caseStudiesStore";
 
-export const useCaseStudiesStore = () => {
-    const { payloadCaseStudies, setCaseStudiesState } = useCaseStudiesStates();
+export const useCaseStudiesStore = (setCaseStudies: React.Dispatch<React.SetStateAction<CaseStudiesState>>) => {
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const setCaseStudies = (res: any) => setCaseStudiesMapper(res, setCaseStudiesState);
-
-    const fetchCaseStudies = async (payload: PayloadCaseStudies = payloadCaseStudies, isStore: boolean = true) => {
+    const fetchCaseStudies = async (payload: PayloadCaseStudies) => {
         try {
-            if (isStore) {
-                setCaseStudiesState((prev) => ({ ...prev, isLoading: true, isError: false }));
-            }
+            setCaseStudies(prev => ({ ...prev, isLoading: true, isError: false }));
 
-            const data = await getCaseStudies(payload);
+            const { data } = await getCaseStudies(payload);
 
-            if (isStore) {
-                setCaseStudies(data);
+            if (data) {
+                setCaseStudies({ data, isLoading: false, isError: false });
+            } else {
+                setCaseStudies(prev => ({ ...prev, isError: true, isLoading: false }));
             }
 
             return { data };
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             if (error.name !== "CanceledError") {
-                if (isStore) {
-                    setCaseStudiesState((prev) => ({ ...prev, isLoading: false, isError: true }));
-                }
+                setCaseStudies(prev => ({ ...prev, isLoading: false, isError: true }));
                 console.error(error);
                 return { error };
             }

@@ -1,6 +1,6 @@
-# Kazee AI Search Frontend
+# Explore Case Study Frontend
 
-Antarmuka pencarian dan percakapan berbasis AI yang dibangun menggunakan Vue 3 dan TypeScript, menerapkan pola komposisi modern dan arsitektur komponen yang terstruktur.
+Platform untuk menampilkan dan menjelajahi koleksi case studies, dibangun menggunakan Next.js, React, dan TypeScript dengan pola komposisi modern dan arsitektur komponen yang terstruktur.
 
 ## 🚀 Teknologi yang Digunakan
 
@@ -44,7 +44,7 @@ src/
 
 ```bash
 # Mengklon repositori
-git clone https://github.com/your-username/kazee-ai-search-frontend.git
+git clone https://github.com/your-username/explore-case-study.git
 
 # Memasang dependensi
 npm install
@@ -106,35 +106,43 @@ oleh backend (terkait payload / parameter) dan berdasarkan struktur data
 yang sudah di define pada Pengelolaan Data diatas (sebelumnya)
 
 gunakan prefix
-- payload                  = `Payload${url api (ex: /v1/conversation/projects)}`
-- state data               = `${url api (ex: /v1/conversation/projects)}`
-- state data yg dikonsumsi = `Data${url api (ex: /v1/conversation/projects)}`
+- payload                  = `Payload${url api (ex: /case-studies)}`
+- state data               = `${url api (ex: /case-studies)}`
+- state data yg dikonsumsi = `Data${url api (ex: /case-studies)}`
 
 ```typescript
 // payload
-export interface PayloadConversationProjects {
+export interface PayloadCaseStudies {
   page: number;
-  limit: number;
-  search: string;
-  order_by: string;
-  order_direction: string;
+  max: number;
+  sort: string;
 }
 
 // state data yang dikonsumsi
-export interface DataConversationProjects {
+export interface DataCaseStudies {
   id: number;
-  name: string;
-  date: string;
-  conversationId?: string;
-  files?: string;
+  title: string;
+  description: string;
+  image: string;
+  tag: string[];
+  username: string;
+  job: string;
+  rank: string;
 }
 
 // state data
-export interface ConversationProjects {
+export interface CaseStudies {
   isLoading: boolean;
   isError: boolean;
-  data: DataConversationProjects[] | { [key: string]: any }[];
-  pagination: Pagination;
+  data: DataCaseStudies[];
+  pagination: CaseStudiesPagination;
+}
+
+export interface CaseStudiesPagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
 }
 ```
 
@@ -163,27 +171,38 @@ Service bersih dari logika apapun karena hanya untuk melakukan pemanggilan
 api saja, untuk pengelolaan data akan di handle oleh file /*prefixStore.ts
 
 gunakan prefix
-- get    = `get${url api (ex: /v1/conversation/projects)}`
-- post   = `post${url api (ex: /v1/conversation/projects)}`
-- delete = `delete${url api (ex: /v1/conversation/projects)}`
-- put    = `put${url api (ex: /v1/conversation/projects)}`
+- get    = `get${url api (ex: /case-studies)}`
+- post   = `post${url api (ex: /case-studies)}`
+- delete = `delete${url api (ex: /case-studies)}`
+- put    = `put${url api (ex: /case-studies)}`
 
 ```typescript
-import apiClient from "@/shared/lib/api/axios";
+import { api } from "@/shared/lib/api/axios";
+import { PayloadCaseStudies } from "@/features/case-studies/types/caseStudiesTypes";
 
-let abortConversationProject: AbortController | null = null;
+let abortCaseStudies: AbortController | null = null;
 
-export const getConversationProject = async (conversationId: string) => {
+export const abortGetCaseStudies = () => abortCaseStudies?.abort();
+
+export const getCaseStudies = async (payload: PayloadCaseStudies) => {
   try {
-    if (abortConversationProject) abortConversationProject.abort();
-    abortConversationProject = new AbortController();
+    if (abortCaseStudies) abortCaseStudies.abort();
+    abortCaseStudies = new AbortController();
 
-    const { data } = await apiClient.get(
-      `/v1/ai-search/conversation/project/${conversationId}`
-    );
+    const { data } = await api.get("/case-studies", {
+      params: {
+        page: payload.page,
+        pageSize: payload.max,
+        sort: payload.sort,
+      },
+      signal: abortCaseStudies.signal,
+    });
+
     return data;
   } catch (error) {
-    console.error(error);
+    if (error instanceof Error) {
+      throw error;
+    }
   }
 };
 ```
@@ -192,70 +211,64 @@ export const getConversationProject = async (conversationId: string) => {
 Memiliki 4 Komponen dalam store yaitu payload, state data, api call, pengelolaan (mapping) state agar bisa langsung dikonsumsi berdasarkan kontrak yang sudah dibuat pada saat pembuatan halaman (dummy data)
 
 gunakan prefix untuk state
-- payload = `Payload${url api (ex: /v1/conversation/projects)}`
-- url api = `${url api (ex: /v1/conversation/projects)}`
+- payload = `Payload${url api (ex: /case-studies)}`
+- url api = `${url api (ex: /case-studies)}`
 
 gunakan prefix untuk api call
-- fetch = `fetch${url api (ex: /v1/conversation/projects)}`
-- remove = `remove${url api (ex: /v1/conversation/projects)}`
-- update = `update${url api (ex: /v1/conversation/projects)}`
-- store = `store${url api (ex: /v1/conversation/projects)}`
+- fetch = `fetch${url api (ex: /case-studies)}`
+- remove = `remove${url api (ex: /case-studies)}`
+- update = `update${url api (ex: /case-studies)}`
+- store = `store${url api (ex: /case-studies)}`
 
 gunakan prefix untuk management state
-- set = `set${url api (ex: /v1/conversation/projects)}`
+- set = `set${url api (ex: /case-studies)}`
 
 ```typescript
 import { useState } from "react";
+import { CaseStudiesState, PayloadCaseStudies } from "@/features/case-studies/types/caseStudiesTypes";
+import { getCaseStudies } from "@/features/case-studies/service/caseStudiesService";
 
-export const useConversationStates = () => {
-  const [payloadConversationProjects, setPayloadConversationProjects] = useState<PayloadConversationProjects>({
+export const useCaseStudiesStates = () => {
+  const [payloadCaseStudies, setPayloadCaseStudies] = useState<PayloadCaseStudies>({
     page: 1,
-    limit: 12,
-    search: "",
-    order_by: "created_at",
-    order_direction: "desc",
-  });
-  
-  const [conversationProjects, setConversationProjectsState] = useState<ConversationProjects>({
-    isLoading: false,
-    isError: false,
-    data: [],
-    pagination: {
-      totalItems: 1,
-      currentPage: 1,
-      totalPages: 1,
-      itemsPerPage: 12,
-    },
+    max: 10,
+    sort: "title:asc",
   });
 
-  return { payloadConversationProjects, setPayloadConversationProjects, conversationProjects, setConversationProjectsState };
+  const [caseStudies, setCaseStudies] = useState<CaseStudiesState>({
+    data: [],
+    isLoading: true,
+    isError: false,
+  });
+
+  return { payloadCaseStudies, setPayloadCaseStudies, caseStudies, setCaseStudies };
 }
 
-export const useConversationStore = () => {
-  const { payloadConversationProjects, conversationProjects, setConversationProjectsState } = useConversationStates();
-
-  const setConversationProjects = (res: ResponseData) => {
-    // Implementasi pemetaan state berdasarkan response API
-  };
-
-  const fetchConversationProjects = async (
-    id: string,
-    payload: PayloadConversationProjects,
-    isStore: boolean = true
-  ) => {
+export const useCaseStudiesStore = (setCaseStudies: React.Dispatch<React.SetStateAction<CaseStudiesState>>) => {
+  const fetchCaseStudies = async (payload: PayloadCaseStudies) => {
     try {
-      if (isStore) setConversationProjectsState(prev => ({ ...prev, isLoading: true }));
-      const data = await getConversationProjects(id, payload);
-      if (isStore) setConversationProjects(data);
+      setCaseStudies(prev => ({ ...prev, isLoading: true, isError: false }));
+      const { data } = await getCaseStudies(payload);
+
+      if (data) {
+        setCaseStudies({ data, isLoading: false, isError: false });
+      } else {
+        setCaseStudies(prev => ({ ...prev, isError: true, isLoading: false }));
+      }
+
       return { data };
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      if (error.name !== "CanceledError") {
+        setCaseStudies(prev => ({ ...prev, isLoading: false, isError: true }));
+        console.error(error);
+        return { error };
+      }
+      return { canceled: true };
     }
   };
-  
+
   return {
-    payloadConversationProjects, conversationProjects,
-    fetchConversationProjects, setConversationProjects
+    fetchCaseStudies
   }
 };
 ```
@@ -263,50 +276,47 @@ export const useConversationStore = () => {
 ### Pengelolaan Hooks
 Hook dibuat ketika 1 aksi dalam aplikasi membutuhkan aksi aksi lain (ex: harus hit api a, hit api b baru setelah itu hit api target/utama-nya)
 
-sebagai contoh ketika generate conversation membutuhkan pengecekan apakah 
-project dengan id tertentu sudah ada atau belum, maka dari itu hit 'fetchConversationProject(id)' terlebih dahulu sebelum melakukan generate conversation 'fetchConversationGenerate(id, payloadConversationGenerate)
+sebagai contoh ketika fetch case studies membutuhkan pengecekan filtering yang diperlukan maka dari itu hit 'fetchCaseStudies(payload)' berdasarkan parameter filter yang diberikan.
 
 gunakan prefix
-- handle = `handle${url api (ex: /v1/conversation/projects)}`
+- handle = `handle${url api (ex: /case-studies)}`
 
 ```typescript
-export function useConversationHooks() {
-  const handleConversationGenerate = async (id: string) => {
-    let storeFromGetProject = false;
-    await fetchConversationProject(id).then((res: any) => {
-      if (res?.data?.status === "success" && res?.data?.data !== null)
-        storeFromGetProject = true;
-    });
+import { useEffect } from "react";
+import { useCaseStudiesStore } from "@/features/case-studies/store/caseStudiesStore";
+import { useCaseStudiesStates } from "@/features/case-studies/states/caseStudiesStates";
+import { abortGetCaseStudies } from "@/features/case-studies/service/caseStudiesService";
 
-    if (!storeFromGetProject) {
-      await fetchConversationGenerate(id, payloadConversationGenerate);
-    }
+export const useCaseStudiesHooks = () => {
+  const { payloadCaseStudies, caseStudies, setCaseStudies } = useCaseStudiesStates();
+  const { fetchCaseStudies } = useCaseStudiesStore(setCaseStudies);
 
-    await fetchConversationRelevantFile(id, payloadConversationRelevantFile);
-  };
+  useEffect(() => {
+    fetchCaseStudies(payloadCaseStudies);
+    return () => abortGetCaseStudies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [payloadCaseStudies.page, payloadCaseStudies.max, payloadCaseStudies.sort]);
 
-  return {
-    handleConversationGenerate
-  }
-}
+  return { caseStudies };
+};
 ```
 
 ## 🏗️ Arsitektur
 
 ### Fitur Utama
-- Percakapan real-time dengan AI
-- Pengunggahan dan pemrosesan berkas
-- Peringkasan dokumen
+- Tampilan daftar case studies
+- Penjelajahan case studies dengan berbagai filter
+- Penampilan detail case studies
+- Responsive design untuk semua ukuran layar
 
 ### Pola Utama (Lifecycle Development)
 - Pembuatan halaman (inisiasi state dummy, di src/features/*/data/*Data.ts)
 - Membuat types di src/features/*/types/*Types.ts
 - Membuat service di src/features/*/service/*Service.ts
 - Membuat hook states di src/features/*/states/*States.ts
-- Membuat helper store di src/features/*/helpers/*Store.ts
 - Membuat store di src/features/*/store/*Store.ts
 - Membuat hooks di src/features/*/hooks/*Hooks.ts
-- Membuat helper di src/features/*/helpers/*Helpers.ts 
+- Membuat helper di src/features/*/helpers/*Helpers.ts
   (opsional, jika logika pengelolaan format atau utilitas cukup kompleks)
 
 ## 🚀 Pembangunan dan Penerapan
@@ -329,11 +339,34 @@ npm run preview
 
 ## 📝 Environment Variables
 
+### Development (HTTP Localhost)
 ```env
-VITE_API_BASE_URL=https://api.example.com
-VITE_WEBSOCKET_URL=wss://ws.example.com
-VITE_CLIENT_ID=your-client-id
+# API Configuration untuk development dengan localhost
+NEXT_PUBLIC_API_BASE_URL=http://localhost:1337/api
+NEXT_PUBLIC_BASE_URL=http://localhost:1337
+NEXT_PUBLIC_API_TOKEN=your-api-token-here
+
+# Next.js
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key-here
 ```
+
+### Production (HTTPS)
+```env
+# API Configuration untuk production
+NEXT_PUBLIC_API_BASE_URL=https://your-api-domain.com/api
+NEXT_PUBLIC_BASE_URL=https://your-api-domain.com
+NEXT_PUBLIC_API_TOKEN=your-api-token-here
+
+# Next.js
+NEXTAUTH_URL=https://your-domain.com
+NEXTAUTH_SECRET=your-secret-key-here
+```
+
+**Catatan:**
+- Frontend otomatis mengizinkan HTTP untuk `localhost` dan `127.0.0.1` dalam mode development
+- Untuk production, selalu gunakan HTTPS
+- API token disimpan di variabel environment untuk keamanan
 
 ## 📚 Dokumentasi
 
@@ -349,4 +382,4 @@ MIT License - lihat berkas [LICENSE](LICENSE) untuk informasi lebih lanjut.
 
 ---
 
-Dikembangkan oleh tim Kazee AI.
+Dikembangkan oleh Casestudy Team.
