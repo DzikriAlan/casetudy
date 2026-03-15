@@ -17,12 +17,11 @@ interface ListPortoProps {
   hideExploreSection?: boolean;
 }
 
-const rankStyleMap: Record<string, { background: string; color: string; icon: string; label: { en: string; id: string } }> = {
-  Beginner: { background: 'bg-[#E8F5E9]', color: 'text-[#2E7D32]', icon: 'bg-[#4CAF50]', label: { en: 'Beginner', id: 'Pemula' } },
+const levelStyleMap: Record<string, { background: string; color: string; icon: string; label: { en: string; id: string } }> = {
+  Beginner: { background: 'bg-[#FFF3CC]', color: 'text-[#916800]', icon: 'bg-[#F9BF25]', label: { en: 'Beginner', id: 'Pemula' } },
   Intermediate: { background: 'bg-[#FFF3E0]', color: 'text-[#E65100]', icon: 'bg-[#FF9800]', label: { en: 'Intermediate', id: 'Menengah' } },
-  Advanced: { background: 'bg-[#EDE7F6]', color: 'text-[#4527A0]', icon: 'bg-[#7E57C2]', label: { en: 'Advanced', id: 'Mahir' } },
+  Advanced: { background: 'bg-[#DFF4E5]', color: 'text-[#1B734C]', icon: 'bg-[#22BE7B]', label: { en: 'Advanced', id: 'Mahir' } },
 };
-
 
 export function ListPorto({ showViewAllButton = false, showEndOfList = false, hideExploreSection = false, data = [], isLoading = false, isError = false }: ListPortoProps = {}) {
   const { t, language } = useLanguage();
@@ -113,8 +112,18 @@ export function ListPorto({ showViewAllButton = false, showEndOfList = false, hi
             {item.description}
           </p>
           <div className="flex flex-wrap gap-2 mb-4 mt-4">
-            {item.tag?.map((tag: string) => (
-              <span key={tag} className="text-xs md:text-sm">
+            {item.tags?.map((tag: string, index: number) => (
+              <span key={tag} className="text-xs md:text-sm flex items-center gap-2">
+                {index !== 0 && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-3 h-3"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                )}
                 {tag}
               </span>
             ))}
@@ -132,13 +141,13 @@ export function ListPorto({ showViewAllButton = false, showEndOfList = false, hi
               </div>
             </div>
             {(() => {
-              const rank = rankStyleMap[item.rank] ?? rankStyleMap['Beginner'];
+              const level = levelStyleMap[item.level] ?? levelStyleMap['Beginner'];
               return (
-                <span className={`text-xs p-2 rounded-full flex items-center gap-2 ${rank.background} ${rank.color}`}>
-                  <span className={`flex items-center justify-center rounded-full h-[22px] w-[22px] ${rank.icon}`}>
+                <span className={`text-xs p-2 rounded-full flex items-center gap-2 ${level.background} ${level.color}`}>
+                  <span className={`flex items-center justify-center rounded-full h-[22px] w-[22px] ${level.icon}`}>
                     <Icon icon="rivet-icons:lightning" width="10" height="10" className='text-white' />
                   </span>
-                  {rank.label[language]}
+                  {level.label[language]}
                 </span>
               );
             })()}

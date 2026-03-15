@@ -127,7 +127,7 @@ export interface DataCaseStudies {
   tag: string[];
   username: string;
   job: string;
-  rank: string;
+  level: string;
 }
 
 // state data
