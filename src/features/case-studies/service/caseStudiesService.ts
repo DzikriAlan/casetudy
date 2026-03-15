@@ -1,4 +1,4 @@
-import { api } from "@/shared/lib/api/axios";
+import api from "@/shared/lib/api/axios";
 import { PayloadCaseStudies } from "@/features/case-studies/types/caseStudiesTypes";
 
 let abortCaseStudies: AbortController | null = null;

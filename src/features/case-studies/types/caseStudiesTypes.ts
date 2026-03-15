@@ -11,10 +11,17 @@ export interface CaseStudiesPagination {
     total: number;
 }
 
+export interface CaseStudy {
+    [key: string]: unknown;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type DataCaseStudies = any;
+
 export interface CaseStudies {
     isLoading: boolean;
     isError: boolean;
-    data: [];
+    data: CaseStudy[];
     pagination: CaseStudiesPagination;
 }
 
