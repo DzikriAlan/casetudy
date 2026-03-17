@@ -19,6 +19,12 @@ const nextConfig = {
         port: '1337',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'elegant-excitement-d51fddde80.strapiapp.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

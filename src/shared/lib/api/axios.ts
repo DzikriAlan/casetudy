@@ -9,7 +9,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
 
 const baseConfig: AxiosRequestConfig = {
   baseURL: API_BASE_URL,
-  timeout: 5000,
+  timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',
@@ -33,8 +33,22 @@ apiClient.interceptors.response.use(
   (error) => Promise.reject(error)
 );
 
-// Public client — no Authorization header, for public Strapi endpoints
+const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN || '';
+
+// Public client — uses read-only token for Strapi endpoints
 export const api: AxiosInstance = axios.create(baseConfig);
+
+api.interceptors.request.use(
+  (config) => {
+    const headers = AxiosHeaders.from(config.headers);
+    if (API_TOKEN) {
+      headers.set('Authorization', `Bearer ${API_TOKEN}`);
+    }
+    config.headers = headers;
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
