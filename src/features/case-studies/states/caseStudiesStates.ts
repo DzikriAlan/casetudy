@@ -5,7 +5,7 @@ export const useCaseStudiesStates = () => {
     const [payloadCaseStudies, setPayloadCaseStudies] = useState<PayloadCaseStudies>({
         page: 1,
         max: 10,
-        sort: "title:asc",
+        sort: "newest",
     });
 
     const [caseStudies, setCaseStudies] = useState<CaseStudies>({
@@ -18,6 +18,7 @@ export const useCaseStudiesStates = () => {
             pageCount: 1,
             total: 1,
         },
+        categories: [],
     });
 
     return {

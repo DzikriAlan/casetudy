@@ -21,7 +21,13 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'elegant-excitement-d51fddde80.strapiapp.com',
+        hostname: 'popular-bat-7f00ad6d75.strapiapp.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'popular-bat-7f00ad6d75.media.strapiapp.com',
         port: '',
         pathname: '/**',
       },

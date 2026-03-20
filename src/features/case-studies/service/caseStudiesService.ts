@@ -10,12 +10,22 @@ export const getCaseStudies = async (payload: PayloadCaseStudies) => {
         if (abortCaseStudies) abortCaseStudies.abort();
         abortCaseStudies = new AbortController();
 
+        const params = new URLSearchParams();
+        params.set("page", String(payload.page));
+        params.set("pageSize", String(payload.max));
+        params.set("sortBy", payload.sort);
+
+        if (payload.search) {
+            params.set("search", payload.search);
+        }
+
+        if (payload.category) {
+            const cats = Array.isArray(payload.category) ? payload.category : [payload.category];
+            cats.forEach(cat => params.append("category", cat));
+        }
+
         const { data } = await api.get("/case-studies", {
-            params: {
-                page: payload.page,
-                pageSize: payload.max,
-                sort: payload.sort,
-            },
+            params,
             signal: abortCaseStudies.signal,
         });
 
