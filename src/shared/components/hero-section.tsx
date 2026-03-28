@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import dotImage from "@/shared/assets/img/decoration/dot.webp";
 import { useLanguage } from "@/shared/lib/i18n/LanguageContext"
+import { openWhatsApp } from "@/shared/lib/whatsapp"
 import hero1Image from "@/shared/assets/img/decoration/hero-section/hero-1.webp";
 import hero2Image from "@/shared/assets/img/decoration/hero-section/hero-2.webp";
 import hero3Image from "@/shared/assets/img/decoration/hero-section/hero-3.webp";
@@ -40,7 +41,7 @@ export function HeroSection() {
           <button onClick={() => router.push('/explore')} className="w-full sm:w-auto bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-all shadow-lg text-base md:text-lg">
             {t("exploreCaseStudies")}
           </button>
-          <button className="w-full sm:w-auto bg-transparent text-white border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all text-base md:text-lg">
+          <button onClick={openWhatsApp} className="w-full sm:w-auto bg-transparent text-white border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all text-base md:text-lg">
             {t("uploadCaseStudy")}
           </button>
         </div>

@@ -5,6 +5,7 @@ import titleImage from "@/shared/assets/img/landing/footer/image.webp";
 import { StartCaseSection } from "./reusable/start-case-section";
 import { SocmedSection } from "./reusable/socmed-section";
 import { useLanguage } from "@/shared/lib/i18n/LanguageContext";
+import { openWhatsApp } from "@/shared/lib/whatsapp";
 
 export function FooterSection() {
   const { t } = useLanguage();
@@ -19,11 +20,12 @@ export function FooterSection() {
           priority={false}
         />
       </div>
-      <StartCaseSection 
+      <StartCaseSection
         badgeText={t("footerBadgeText")}
         title={t("footerTitle")}
         description={t("footerDescription")}
         buttonText={t("uploadCaseStudy")}
+        onButtonClick={openWhatsApp}
       />
       <SocmedSection />
       <div className="absolute bottom-0 left-0 right-0 h-[150px] md:h-[200px] lg:h-[250px] pointer-events-none">

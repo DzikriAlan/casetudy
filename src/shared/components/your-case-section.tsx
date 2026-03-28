@@ -3,6 +3,7 @@ import Image from "next/image";
 import dotImage from "@/shared/assets/img/decoration/dot.webp";
 import { StartCaseSection } from "@/shared/components/reusable/start-case-section";
 import { useLanguage } from "@/shared/lib/i18n/LanguageContext";
+import { openWhatsApp } from "@/shared/lib/whatsapp";
 
 export function YourCaseSection() {
   const { t } = useLanguage();
@@ -18,11 +19,12 @@ export function YourCaseSection() {
           priority={false}
         />
       </div>
-      <StartCaseSection 
+      <StartCaseSection
         badgeText={t("yourCaseBadgeText")}
         title={t("yourCaseTitle")}
         description={t("yourCaseDescription")}
         buttonText={t("uploadCaseStudy")}
+        onButtonClick={openWhatsApp}
       />
     </section>
   )

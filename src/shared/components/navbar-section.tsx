@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown } from "lucide-react"
 import logoCasetudy from "@/shared/assets/img/logo/logo-casetudy.webp"
 import { useLanguage } from "@/shared/lib/i18n/LanguageContext"
 import type { Language } from "@/shared/lib/i18n/translations"
+import { openWhatsApp } from "@/shared/lib/whatsapp"
 
 const LANGUAGES = [
   { code: "en" as Language, name: "EN", flag: "https://flagcdn.com/w40/gb.png" },
@@ -141,6 +142,7 @@ export function Navbar() {
           <button
             className="bg-[#FE4F18] text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-md hover:shadow-lg"
             type="button"
+            onClick={openWhatsApp}
           >
             {t("upload")}
           </button>
@@ -223,7 +225,7 @@ export function Navbar() {
               <button
                 type="button"
                 className="w-full bg-[#FE4F18] hover:bg-orange-600 text-white px-4 py-2.5 rounded-lg font-medium transition-all shadow-md"
-                onClick={closeMenu}
+                onClick={() => { closeMenu(); openWhatsApp(); }}
               >
                 {t("upload")}
               </button>
