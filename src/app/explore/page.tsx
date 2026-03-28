@@ -74,7 +74,7 @@ export default function ExplorePage() {
         : "Browse in All Case Studies";
 
     const sortDropdown = (
-        <div className="absolute right-0 top-full mt-2 w-44 bg-white rounded-xl shadow-lg border border-[#E6E6E6] z-50 py-1">
+        <div className="absolute left-0 md:left-auto md:right-0 top-full mt-2 w-44 bg-white rounded-xl shadow-lg border border-[#E6E6E6] z-50 py-1">
             {SORT_OPTIONS.map(opt => (
                 <button
                     key={opt.value}
@@ -94,7 +94,7 @@ export default function ExplorePage() {
                 <Navbar />
             </div>
 
-            <div className="flex pt-24 md:pt-32 min-h-screen">
+            <div className="flex pt-24 md:pt-32 min-h-screen md:mx-7">
                 {/* Sidebar — desktop only */}
                 <aside className="hidden md:flex flex-col w-60 lg:w-72 border-r border-[#E6E6E6] shrink-0 px-4 pt-10 gap-1">
                     <button
@@ -116,7 +116,7 @@ export default function ExplorePage() {
 
                 {/* Main Content */}
                 <main className="flex-1 min-w-0">
-                    <div className="px-4 md:px-10 pt-8 pb-2">
+                    <div className="px-3 sm:px-6 lg:px-8 pt-8 pb-2">
                         <h1 className="text-[28px] md:text-[36px] font-bold text-[#1A1A1A] mb-6">
                             {headerTitle}
                         </h1>
@@ -153,35 +153,35 @@ export default function ExplorePage() {
                             </div>
                         </div>
 
-                        {/* Mobile category pills — horizontal scroll */}
-                        <div className="flex md:hidden gap-2 overflow-x-auto mt-4 pb-1 no-scrollbar">
-                            <button
-                                onClick={() => handleSelectCategory(null)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors shrink-0 ${selectedCategory === null ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] text-[#52525B]"}`}
-                            >
-                                All
-                            </button>
-                            {SIDEBAR_CATEGORIES.map(cat => (
+                        {/* Mobile: sort button (kiri) + category pills */}
+                        <div className="flex md:hidden gap-2 mt-4 pb-1 items-center">
+                            <div ref={sortMobileRef} className="relative shrink-0">
                                 <button
-                                    key={cat}
-                                    onClick={() => handleSelectCategory(cat)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors shrink-0 ${selectedCategory === cat ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] text-[#52525B]"}`}
+                                    onClick={() => setSortOpen(p => !p)}
+                                    className="flex items-center gap-2 px-4 py-2 bg-[#F4F4F5] hover:bg-[#E4E4E5] transition-colors rounded-xl font-medium text-[#52525B] text-sm"
                                 >
-                                    {cat}
+                                    <Icon icon="lucide:list-filter" width="16" height="16" />
+                                    {activeSortLabel}
                                 </button>
-                            ))}
-                        </div>
-
-                        {/* Mobile sort — below categories */}
-                        <div ref={sortMobileRef} className="md:hidden relative mt-3 w-fit">
-                            <button
-                                onClick={() => setSortOpen(p => !p)}
-                                className="flex items-center gap-2 px-4 py-2 bg-[#F4F4F5] hover:bg-[#E4E4E5] transition-colors rounded-xl font-medium text-[#52525B] text-sm"
-                            >
-                                <Icon icon="lucide:list-filter" width="16" height="16" />
-                                {activeSortLabel}
-                            </button>
-                            {sortOpen && sortDropdown}
+                                {sortOpen && sortDropdown}
+                            </div>
+                            <div className="flex gap-2 overflow-x-auto no-scrollbar flex-1">
+                                <button
+                                    onClick={() => handleSelectCategory(null)}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors shrink-0 ${selectedCategory === null ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] text-[#52525B]"}`}
+                                >
+                                    All
+                                </button>
+                                {SIDEBAR_CATEGORIES.map(cat => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => handleSelectCategory(cat)}
+                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors shrink-0 ${selectedCategory === cat ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] text-[#52525B]"}`}
+                                    >
+                                        {cat}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -190,6 +190,7 @@ export default function ExplorePage() {
                         showEndOfList={true}
                         showViewAllButton={false}
                         imageContain={true}
+                        columns={3}
                         data={caseStudies.data}
                         isLoading={caseStudies.isLoading}
                         isError={caseStudies.isError}
