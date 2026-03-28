@@ -7,13 +7,16 @@ export const useCaseStudiesHooks = () => {
     const { payloadCaseStudies, setPayloadCaseStudies, caseStudies, setCaseStudies } = useCaseStudiesStates();
     const { fetchCaseStudies } = useCaseStudiesStore(setCaseStudies);
 
-    const categoryKey = JSON.stringify(payloadCaseStudies.category ?? null);
-
     useEffect(() => {
+        console.log('daru')
         fetchCaseStudies(payloadCaseStudies);
         return () => abortGetCaseStudies();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [payloadCaseStudies.page, payloadCaseStudies.max, payloadCaseStudies.sort, categoryKey, payloadCaseStudies.search]);
+    }, [
+        payloadCaseStudies.page, payloadCaseStudies.max,
+        payloadCaseStudies.sort,
+        payloadCaseStudies.search, payloadCaseStudies.category
+    ]);
 
     return { caseStudies, payloadCaseStudies, setPayloadCaseStudies };
 };

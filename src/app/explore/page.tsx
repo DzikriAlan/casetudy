@@ -20,6 +20,7 @@ export default function ExplorePage() {
     const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
     const [searchInput, setSearchInput] = useState("");
 
+    // Refs unified to single instances
     const filterRef = useRef<HTMLDivElement>(null);
     const sortRef = useRef<HTMLDivElement>(null);
 
@@ -37,25 +38,23 @@ export default function ExplorePage() {
     else if (activeCategories.length === 1) filterLabel = activeCategories[0];
     else filterLabel = `Filter (${activeCategories.length})`;
 
-    // Close dropdowns on outside click — only when open
+    // Unified Click Outside Handler
     useEffect(() => {
-        if (openPanel !== "filter") return;
-        const handler = (e: MouseEvent) => {
-            if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
-                setOpenPanel(null);
-            }
-        };
-        document.addEventListener("mousedown", handler);
-        return () => document.removeEventListener("mousedown", handler);
-    }, [openPanel]);
+        if (!openPanel) return;
 
-    useEffect(() => {
-        if (openPanel !== "sort") return;
         const handler = (e: MouseEvent) => {
-            if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
-                setOpenPanel(null);
+            const target = e.target as Node;
+            let isInside = false;
+
+            if (openPanel === "filter") {
+                isInside = filterRef.current?.contains(target) ?? false;
+            } else if (openPanel === "sort") {
+                isInside = sortRef.current?.contains(target) ?? false;
             }
+
+            if (!isInside) setOpenPanel(null);
         };
+
         document.addEventListener("mousedown", handler);
         return () => document.removeEventListener("mousedown", handler);
     }, [openPanel]);
@@ -139,9 +138,7 @@ export default function ExplorePage() {
 
     return (
         <div className="bg-white min-h-screen">
-            <div
-                className={`fixed px-3 py-4 z-40 w-full transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
-            >
+            <div className={`fixed px-3 py-4 z-40 w-full transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
                 <Navbar />
             </div>
 
@@ -154,96 +151,51 @@ export default function ExplorePage() {
                         Browse real design case studies to learn how decisions are made in practice.
                     </p>
 
-                    <div className="w-full flex flex-col gap-3 mb-4">
-                        {/* Mobile: Search */}
-                        <div className="flex md:hidden bg-white border border-[#E6E6E6] rounded-xl p-[6px] shadow-sm">
+                    {/* Filter Bar */}
+                    <div className="w-full flex flex-wrap md:flex-nowrap gap-3 md:gap-4 mb-4 md:h-[60px]">
+
+                        {/* Filter — row 2 left on mobile, leftmost on desktop */}
+                        <div ref={filterRef} className="flex-1 md:flex-initial order-2 md:order-1 relative">
+                            <button
+                                onClick={() => setOpenPanel(p => p === "filter" ? null : "filter")}
+                                className={`w-full md:h-[60px] flex items-center justify-center gap-2 px-4 md:px-8 py-[16px] md:py-0 rounded-xl font-medium transition-colors ${activeCategories.length > 0 ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] hover:bg-[#E4E4E5] text-[#52525B]"}`}
+                            >
+                                <Icon icon="octicon:sliders-16" width="18" height="18" />
+                                <span className="whitespace-nowrap">{filterLabel}</span>
+                            </button>
+                            {openPanel === "filter" && categoryDropdown}
+                        </div>
+
+                        {/* Search — row 1 on mobile, center on desktop */}
+                        <div className="w-full md:flex-1 order-1 md:order-2 md:h-[60px] flex bg-white border border-[#E6E6E6] rounded-xl p-[6px] shadow-sm focus-within:border-[#FE4F18] transition-colors">
                             <input
                                 type="text"
                                 placeholder="Search case studies"
                                 value={searchInput}
                                 onChange={e => setSearchInput(e.target.value)}
                                 onKeyDown={e => e.key === "Enter" && handleSearch()}
-                                className="w-full px-4 outline-none text-[#1A1A1A] placeholder:text-[#999999] bg-transparent"
+                                className="w-full px-4 md:px-5 py-2 outline-none text-[#1A1A1A] placeholder:text-[#999999] bg-transparent"
                             />
                             <button
                                 onClick={handleSearch}
-                                className="bg-[#FE4F18] text-white px-6 py-[14px] font-semibold rounded-lg text-sm"
+                                className="bg-[#FE4F18] hover:bg-[#E54515] transition-colors text-white px-6 md:px-10 py-[14px] md:py-0 font-semibold rounded-lg text-sm md:text-base md:h-full"
                             >
                                 Search
                             </button>
                         </div>
 
-                        {/* Mobile: Filter + Sort */}
-                        <div className="flex w-full gap-3 md:hidden">
-                            {/* Filter */}
-                            <div ref={filterRef} className="flex-1 relative">
-                                <button
-                                    onClick={() => setOpenPanel(p => p === "filter" ? null : "filter")}
-                                    className={`w-full flex items-center justify-center gap-2 py-[16px] rounded-xl font-medium transition-colors ${activeCategories.length > 0 ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] text-[#52525B]"}`}
-                                >
-                                    <Icon icon="octicon:sliders-16" width="18" height="18" />
-                                    {filterLabel}
-                                </button>
-                                {openPanel === "filter" && categoryDropdown}
-                            </div>
-
-                            {/* Sort */}
-                            <div ref={sortRef} className="flex-1 relative">
-                                <button
-                                    onClick={() => setOpenPanel(p => p === "sort" ? null : "sort")}
-                                    className="w-full flex items-center justify-center gap-2 py-[16px] bg-[#F4F4F5] rounded-xl font-medium text-[#52525B]"
-                                >
-                                    <Icon icon="lucide:list-filter" width="18" height="18" />
-                                    {activeSortLabel}
-                                </button>
-                                {openPanel === "sort" && sortDropdown}
-                            </div>
+                        {/* Sort — row 2 right on mobile, rightmost on desktop */}
+                        <div ref={sortRef} className="flex-1 md:flex-initial order-3 relative">
+                            <button
+                                onClick={() => setOpenPanel(p => p === "sort" ? null : "sort")}
+                                className="w-full md:h-[60px] flex items-center justify-center gap-2 px-4 md:px-8 py-[16px] md:py-0 bg-[#F4F4F5] hover:bg-[#E4E4E5] transition-colors rounded-xl font-medium text-[#52525B]"
+                            >
+                                <Icon icon="lucide:list-filter" width="18" height="18" />
+                                <span className="whitespace-nowrap">{activeSortLabel}</span>
+                            </button>
+                            {openPanel === "sort" && sortDropdown}
                         </div>
 
-                        {/* Desktop */}
-                        <div className="hidden md:flex w-full gap-4 items-center h-[60px]">
-                            {/* Filter */}
-                            <div ref={filterRef} className="relative h-full">
-                                <button
-                                    onClick={() => setOpenPanel(p => p === "filter" ? null : "filter")}
-                                    className={`h-full flex items-center justify-center gap-2 px-8 rounded-xl font-medium transition-colors ${activeCategories.length > 0 ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] hover:bg-[#E4E4E5] text-[#52525B]"}`}
-                                >
-                                    <Icon icon="octicon:sliders-16" width="18" height="18" />
-                                    {filterLabel}
-                                </button>
-                                {openPanel === "filter" && categoryDropdown}
-                            </div>
-
-                            {/* Search */}
-                            <div className="flex-1 h-full flex bg-white border border-[#E6E6E6] rounded-xl p-[6px] focus-within:border-[#FE4F18] transition-colors">
-                                <input
-                                    type="text"
-                                    placeholder="Search case studies"
-                                    value={searchInput}
-                                    onChange={e => setSearchInput(e.target.value)}
-                                    onKeyDown={e => e.key === "Enter" && handleSearch()}
-                                    className="w-full px-5 py-2 outline-none text-[#1A1A1A] placeholder:text-[#999999] rounded-l-xl bg-transparent"
-                                />
-                                <button
-                                    onClick={handleSearch}
-                                    className="bg-[#FE4F18] hover:bg-[#E54515] transition-colors text-white px-10 h-full font-semibold rounded-lg"
-                                >
-                                    Search
-                                </button>
-                            </div>
-
-                            {/* Sort */}
-                            <div ref={sortRef} className="relative h-full">
-                                <button
-                                    onClick={() => setOpenPanel(p => p === "sort" ? null : "sort")}
-                                    className="h-full flex items-center justify-center gap-2 px-8 bg-[#F4F4F5] hover:bg-[#E4E4E5] transition-colors rounded-xl font-medium text-[#52525B]"
-                                >
-                                    <Icon icon="lucide:list-filter" width="18" height="18" />
-                                    {activeSortLabel}
-                                </button>
-                                {openPanel === "sort" && sortDropdown}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </main>
