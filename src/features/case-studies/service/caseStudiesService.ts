@@ -13,7 +13,7 @@ export const getCaseStudies = async (payload: PayloadCaseStudies) => {
         const params = new URLSearchParams();
         params.set("page", String(payload.page));
         params.set("pageSize", String(payload.max));
-        params.set("sortBy", payload.sort);
+        params.set("sort", payload.sort);
 
         if (payload.search) {
             params.set("search", payload.search);

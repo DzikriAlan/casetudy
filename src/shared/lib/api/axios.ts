@@ -23,9 +23,9 @@ const apiClient: AxiosInstance = axios.create(baseConfig);
 apiClient.interceptors.request.use(
   (config) => {
     const headers = AxiosHeaders.from(config.headers);
-    // if (API_TOKEN) {
-    //   headers.set('Authorization', `Bearer ${API_TOKEN}`);
-    // }
+    if (API_TOKEN) {
+      headers.set('Authorization', `Bearer ${API_TOKEN}`);
+    }
     config.headers = headers;
     return config;
   },

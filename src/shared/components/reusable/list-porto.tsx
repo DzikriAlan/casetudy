@@ -15,6 +15,7 @@ interface ListPortoProps {
   showViewAllButton?: boolean;
   showEndOfList?: boolean;
   hideExploreSection?: boolean;
+  imageContain?: boolean;
 }
 
 const levelStyleMap: Record<string, { background: string; color: string; icon: string; label: { en: string; id: string } }> = {
@@ -23,7 +24,7 @@ const levelStyleMap: Record<string, { background: string; color: string; icon: s
   Advanced: { background: 'bg-[#DFF4E5]', color: 'text-[#1B734C]', icon: 'bg-[#22BE7B]', label: { en: 'Advanced', id: 'Mahir' } },
 };
 
-export function ListPorto({ showViewAllButton = false, showEndOfList = false, hideExploreSection = false, data = [], isLoading = false, isError = false }: ListPortoProps = {}) {
+export function ListPorto({ showViewAllButton = false, showEndOfList = false, hideExploreSection = false, data = [], isLoading = false, isError = false, imageContain = false }: ListPortoProps = {}) {
   const { t, language } = useLanguage();
   const router = useRouter();
 
@@ -99,7 +100,7 @@ export function ListPorto({ showViewAllButton = false, showEndOfList = false, hi
               src={item.image}
               alt={item.title}
               fill
-              className="object-cover"
+              className={imageContain ? "object-contain" : "object-cover"}
             />
           )}
         </div>
@@ -167,7 +168,7 @@ export function ListPorto({ showViewAllButton = false, showEndOfList = false, hi
         />
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[32px] py-12 md:py-24 px-4 md:px-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[24px] py-6 md:py-10 px-4 md:px-10">
         {content}
       </div>
 

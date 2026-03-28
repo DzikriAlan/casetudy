@@ -8,7 +8,6 @@ export const useCaseStudiesHooks = () => {
     const { fetchCaseStudies } = useCaseStudiesStore(setCaseStudies);
 
     useEffect(() => {
-        console.log('daru')
         fetchCaseStudies(payloadCaseStudies);
         return () => abortGetCaseStudies();
         // eslint-disable-next-line react-hooks/exhaustive-deps

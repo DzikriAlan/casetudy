@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import dotImage from "@/shared/assets/img/decoration/dot.webp";
 import { useLanguage } from "@/shared/lib/i18n/LanguageContext"
 import hero1Image from "@/shared/assets/img/decoration/hero-section/hero-1.webp";
@@ -8,6 +9,7 @@ import hero3Image from "@/shared/assets/img/decoration/hero-section/hero-3.webp"
 
 export function HeroSection() {
   const { t } = useLanguage()
+  const router = useRouter()
   return (
     <section className="relative bg-[#FE4F18] overflow-hidden m-3 rounded-2xl">
       <div className="absolute inset-0 opacity-10">
@@ -35,7 +37,7 @@ export function HeroSection() {
           </p>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 md:mb-20">
-          <button className="w-full sm:w-auto bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-all shadow-lg text-base md:text-lg">
+          <button onClick={() => router.push('/explore')} className="w-full sm:w-auto bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-all shadow-lg text-base md:text-lg">
             {t("exploreCaseStudies")}
           </button>
           <button className="w-full sm:w-auto bg-transparent text-white border-2 border-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-all text-base md:text-lg">

@@ -20,6 +20,18 @@ const nextConfig = {
         pathname: '/**',
       },
       {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3001',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/**',
+      },
+      {
         protocol: 'https',
         hostname: 'popular-bat-7f00ad6d75.strapiapp.com',
         port: '',
