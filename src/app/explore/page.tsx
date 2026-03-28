@@ -189,7 +189,6 @@ export default function ExplorePage() {
                         hideExploreSection={true}
                         showEndOfList={true}
                         showViewAllButton={false}
-                        imageContain={true}
                         columns={3}
                         data={caseStudies.data}
                         isLoading={caseStudies.isLoading}
