@@ -27,7 +27,7 @@ const levelStyleMap: Record<string, { background: string; color: string; icon: s
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function PortoCard({ item, language }: Readonly<{ item: any; language: string }>) {
   const level = levelStyleMap[item.level] ?? levelStyleMap['Beginner'];
-  const initials = item.username?.split(" ").map((w: string) => w.charAt(0).toUpperCase()).join("").slice(0, 2) ?? "";
+  const initials = item.author_name?.split(" ").map((w: string) => w.charAt(0).toUpperCase()).join("").slice(0, 2) ?? "";
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm transition-shadow">
@@ -57,12 +57,16 @@ function PortoCard({ item, language }: Readonly<{ item: any; language: string }>
         </div>
         <div className="flex items-center justify-between pt-4 border-t border-dashed border-[#E6E6E6] w-full mt-auto">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#FE4F18] flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-sm font-semibold">{initials}</span>
+            <div className="w-10 h-10 rounded-full bg-[#FE4F18] flex items-center justify-center flex-shrink-0 overflow-hidden">
+              {item.image_author ? (
+                <Image src={item.image_author} alt={item.author_name ?? ""} width={40} height={40} className="object-cover w-full h-full" />
+              ) : (
+                <span className="text-white text-sm font-semibold">{initials}</span>
+              )}
             </div>
             <div>
-              <p className="text-sm font-medium">{item.username}</p>
-              <p className="text-xs text-gray-500">{item.job}</p>
+              <p className="text-sm font-medium">{item.author_name}</p>
+              <p className="text-xs text-gray-500">{item.author_position}</p>
             </div>
           </div>
           <span className={`text-xs p-2 rounded-full flex items-center gap-2 ${level.background} ${level.color}`}>

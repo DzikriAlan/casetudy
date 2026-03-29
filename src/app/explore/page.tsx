@@ -7,12 +7,6 @@ import { FooterSection } from "@/shared/components/footer-section";
 import { ListPorto } from "@/shared/components/reusable/list-porto";
 import { useCaseStudiesHooks } from "@/features/case-studies/hooks/caseStudiesHooks";
 
-const SIDEBAR_CATEGORIES = [
-    "Project Management",
-    "UI/UX Designer",
-    "Software Engineer",
-];
-
 const SORT_OPTIONS = [
     { label: "Terbaru", value: "newest" },
     { label: "Terlama", value: "oldest" },
@@ -58,9 +52,9 @@ export default function ExplorePage() {
         setPayloadCaseStudies(prev => ({ ...prev, page: 1, search: searchInput.trim() || undefined }));
     };
 
-    const handleSelectCategory = (category: string | null) => {
-        setSelectedCategory(category);
-        setPayloadCaseStudies(prev => ({ ...prev, page: 1, category: category ?? undefined }));
+    const handleSelectCategory = (position: string | null) => {
+        setSelectedCategory(position);
+        setPayloadCaseStudies(prev => ({ ...prev, page: 1, position: position ?? undefined }));
     };
 
     const handleSelectSort = (sort: "newest" | "oldest") => {
@@ -103,13 +97,13 @@ export default function ExplorePage() {
                     >
                         All Case Studies
                     </button>
-                    {SIDEBAR_CATEGORIES.map(cat => (
+                    {caseStudies.positions.map((pos: string) => (
                         <button
-                            key={cat}
-                            onClick={() => handleSelectCategory(cat)}
-                            className={`flex items-center w-full px-4 py-3 rounded-xl text-left font-medium transition-colors ${selectedCategory === cat ? "bg-[#FE4F18] text-white" : "text-[#1A1A1A] hover:bg-[#F4F4F5]"}`}
+                            key={pos}
+                            onClick={() => handleSelectCategory(pos)}
+                            className={`flex items-center w-full px-4 py-3 rounded-xl text-left font-medium transition-colors ${selectedCategory === pos ? "bg-[#FE4F18] text-white" : "text-[#1A1A1A] hover:bg-[#F4F4F5]"}`}
                         >
-                            {cat}
+                            {pos}
                         </button>
                     ))}
                 </aside>
@@ -172,13 +166,13 @@ export default function ExplorePage() {
                                 >
                                     All
                                 </button>
-                                {SIDEBAR_CATEGORIES.map(cat => (
+                                {caseStudies.positions.map((pos: string) => (
                                     <button
-                                        key={cat}
-                                        onClick={() => handleSelectCategory(cat)}
-                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors shrink-0 ${selectedCategory === cat ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] text-[#52525B]"}`}
+                                        key={pos}
+                                        onClick={() => handleSelectCategory(pos)}
+                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors shrink-0 ${selectedCategory === pos ? "bg-[#FE4F18] text-white" : "bg-[#F4F4F5] text-[#52525B]"}`}
                                     >
-                                        {cat}
+                                        {pos}
                                     </button>
                                 ))}
                             </div>

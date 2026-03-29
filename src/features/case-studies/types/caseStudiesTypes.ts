@@ -4,6 +4,7 @@ export interface PayloadCaseStudies {
     sort: string;
     search?: string;
     category?: string | string[];
+    position?: string;
 }
 
 export interface CaseStudiesPagination {
@@ -26,6 +27,7 @@ export interface CaseStudies {
     data: CaseStudy[];
     pagination: CaseStudiesPagination;
     categories: string[];
+    positions: string[];
 }
 
 export type CaseStudiesState<T = unknown> = {

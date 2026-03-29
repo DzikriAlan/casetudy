@@ -23,12 +23,14 @@ export const useCaseStudiesStore = (setCaseStudies: React.Dispatch<React.SetStat
                 const sanitizedData = (response.data ?? []).map((item: any) => ({
                     ...item,
                     image: sanitizeUrl(item.image),
+                    image_author: sanitizeUrl(item.image_author),
                 }));
                 setCaseStudies(prev => ({
                     ...prev,
                     data: sanitizedData,
                     pagination: response.meta?.pagination ?? prev.pagination,
                     categories: response.meta?.categories ?? prev.categories,
+                    positions: response.meta?.positions ?? prev.positions,
                     isError: false,
                     isLoading: false,
                 }));

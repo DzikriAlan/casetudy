@@ -14,7 +14,8 @@ export const useCaseStudiesHooks = () => {
     }, [
         payloadCaseStudies.page, payloadCaseStudies.max,
         payloadCaseStudies.sort,
-        payloadCaseStudies.search, payloadCaseStudies.category
+        payloadCaseStudies.search, payloadCaseStudies.category,
+        payloadCaseStudies.position
     ]);
 
     return { caseStudies, payloadCaseStudies, setPayloadCaseStudies };

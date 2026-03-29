@@ -24,6 +24,10 @@ export const getCaseStudies = async (payload: PayloadCaseStudies) => {
             cats.forEach(cat => params.append("category", cat));
         }
 
+        if (payload.position) {
+            params.set("position", payload.position);
+        }
+
         const { data } = await api.get("/case-studies", {
             params,
             signal: abortCaseStudies.signal,

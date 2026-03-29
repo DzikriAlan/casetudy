@@ -19,6 +19,7 @@ export const useCaseStudiesStates = () => {
             total: 1,
         },
         categories: [],
+        positions: [],
     });
 
     return {
