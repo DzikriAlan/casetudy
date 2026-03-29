@@ -46,14 +46,14 @@ export function SocmedSection() {
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-transparent"></div>
                     </div>
                     <div className="flex flex-row items-center gap-6 lg:flex-col">
-                        <button className="w-10 h-10 rounded-full relative flex items-center justify-center hover:bg-white/10 transition-colors overflow-hidden">
+                        <a href="https://www.linkedin.com/company/casetudy/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full relative flex items-center justify-center hover:bg-white/10 transition-colors overflow-hidden">
                             <div className="absolute inset-0 opacity-70">
                                 <svg className="w-full h-full" viewBox="0 0 40 40">
                                     <circle cx="20" cy="20" r="19.5" fill="none" stroke="white" strokeWidth="1"/>
                                 </svg>
                             </div>
                             <Image src={linkedinImg} alt="" width={16} height={16} className="object-cover relative z-10" priority={false} />
-                        </button>
+                        </a>
                         <button className="w-10 h-10 rounded-full relative flex items-center justify-center hover:bg-white/10 transition-colors overflow-hidden">
                             <div className="absolute inset-0 opacity-70">
                                 <svg className="w-full h-full" viewBox="0 0 40 40">
