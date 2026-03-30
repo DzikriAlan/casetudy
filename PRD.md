@@ -165,7 +165,7 @@ Response yang dikembalikan:
 {
   "data": {
     "id": "...",
-    "image": "http://localhost:3001/uploads/cover.jpg",
+    "image": "http://localhost:3000/uploads/cover.jpg",
     "title": "...",
     "description": "...",
     "tags": ["Tag1", "Tag2"],
@@ -174,12 +174,12 @@ Response yang dikembalikan:
     "level": "Senior",
     "author_name": "...",
     "author_position": "...",
-    "image_author": "http://localhost:3001/uploads/author.jpg"
+    "image_author": "http://localhost:3000/uploads/author.jpg"
   },
   "meta": {}
 }
 Catatan:
 
 :documentId adalah documentId dari Strapi v5 (bukan integer ID biasa), biasanya berupa string alphanumeric seperti kj3h2kj4h2k3
-image dan image_author sudah di-prefix dengan FRONTEND_URL dari env (default: http://localhost:3001)
+image dan image_author sudah di-prefix dengan FRONTEND_URL dari env (default: http://localhost:3000)
 Logic ada di src/api/case-study/controllers/case-study.ts:35-52

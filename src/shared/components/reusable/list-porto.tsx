@@ -29,8 +29,13 @@ function PortoCard({ item, language }: Readonly<{ item: any; language: string }>
   const level = levelStyleMap[item.level] ?? levelStyleMap['Beginner'];
   const initials = item.author_name?.split(" ").map((w: string) => w.charAt(0).toUpperCase()).join("").slice(0, 2) ?? "";
 
+  const Wrapper = item.external_link ? 'a' : 'div';
+  const wrapperProps = item.external_link
+    ? { href: item.external_link, target: '_blank', rel: 'noopener noreferrer', className: 'bg-white rounded-2xl overflow-hidden shadow-sm transition-shadow cursor-pointer hover:shadow-md block' }
+    : { className: 'bg-white rounded-2xl overflow-hidden shadow-sm transition-shadow' };
+
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm transition-shadow">
+    <Wrapper {...wrapperProps}>
       <div className="relative h-[300px] bg-gray-100">
         {item.image && (
           <Image src={item.image} alt={item.title} fill className="object-cover" />
@@ -77,7 +82,7 @@ function PortoCard({ item, language }: Readonly<{ item: any; language: string }>
           </span>
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 }
 
